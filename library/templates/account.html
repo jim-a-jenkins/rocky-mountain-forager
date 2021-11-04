@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}Account{% endblock %}
+
+{% block content %}
+  <h1>Account Details</h1>
+    <h3>Score History</h3>
+    {% for score in scores %}
+    <li>Score: {{ score.score }}%, Date: {{ score.date }}</li>
+    {% endfor %}
+    <h3>Change Password</h3>
+    Change your password <a href="{% url "library:password_change" %}">here</a>
+{% endblock %}

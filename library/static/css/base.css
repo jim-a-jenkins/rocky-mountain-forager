@@ -1,0 +1,160 @@
+body {
+    margin:0;
+    font-family:'Optima', sans-serif;
+    font-weight:400;
+}
+
+body p {
+    font-family:'Optima', sans-serif;
+    font-weight:400;
+    line-height: 20px;
+}
+
+.plant-info {
+    color: black;
+    margin-left: 10px;
+    margin-right: 600px;
+}
+
+
+#header {
+    background: #37912f;
+    overflow:auto;
+    padding:10px;
+    border-bottom:6px solid #1b7215;
+    color: white;
+    height: 50px;
+}
+
+#header h1 {
+    left: 20px;
+    bottom: 10px;
+    position: relative;
+}
+
+#header ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+#header li {
+  display: inline;
+}
+
+#header li a {
+  font-size: 16pt;
+  padding: 40px;
+}
+
+#header a:link {
+    color: white;
+    text-decoration: none;
+}
+
+#header a:visited {
+    color: white;
+    text-decoration: none;
+}
+
+.warning {
+    padding: 20px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    border: 3px solid black;
+    width: 750px;
+    height: 100px;
+}
+
+.warning-symbol {
+    width: 10%;
+    float: left;
+    padding: 20px;
+} 
+
+.warning-msg {
+    width: 60%;
+    float: left;
+    padding: 20px;
+} 
+
+#content {
+    left: 30px;
+    position: relative;
+    color: black;
+}
+
+#imgtext a:link {
+    color: white;
+    text-decoration: none;
+}
+
+
+.cookie-bar {
+    width: 50%;
+    top:0;
+    text-align:center;
+    height:150px;
+    color:white;
+    line-height: 25px;
+    background: #37912f;
+    border: 3px solid green;
+    padding: 10px;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* The grid: Four equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 25%;
+  padding: 5px;
+}
+
+/* Style the images inside the grid */
+.column img {
+  opacity: 1.0;
+  cursor: pointer;
+  max-width: 75%
+}
+
+.column img:hover {
+  opacity: 0.8;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* The expanding image container (positioning is needed to position the close button and the text) */
+.container {
+  position: relative;
+  display: none;
+  width: 50%;
+  margin: auto;
+}
+
+/* Expanding image text */
+#imgtext {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  color: white;
+  font-size: 20px;
+}
+
+/* Closable button inside the image */
+.closebtn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  color: white;
+  font-size: 35px;
+  cursor: pointer;
+}

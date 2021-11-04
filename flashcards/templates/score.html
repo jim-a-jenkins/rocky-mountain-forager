@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load cookie_consent_tags %}
+{% load custom_filters %}
+
+{% block content %}
+    {% if request|cookie_group_accepted:"optional" or request|cookie_group_declined:"optional" %}
+        <h2>Session Complete!</h2>
+        <p>{{ num_correct }} out of {{ total_questions }} corrrect.</p>
+        <p>Score: {{ score }}%</p>
+    {% endif %}
+{% endblock %}

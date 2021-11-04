@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load cookie_consent_tags %}
+{% load custom_filters %}
+
+{% block content %}
+    {% if request|cookie_group_accepted:"optional" or request|cookie_group_declined:"optional" %}
+        {% load static %}
+        {% with question.plant_image|get_image_name as image_name %}
+            {% with 'images/'|add:image_name as image_static %}
+            <p><img src="{% static image_static %}" width="700" ></p>
+            {% endwith %}
+        {% endwith %}
+        <form method="post">
+            {% csrf_token %}
+            <input type="submit" name="choice" value='{{ question.choice_a }}'>
+            <input type="submit" name="choice" value='{{ question.choice_b }}'>
+            <input type="submit" name="choice" value='{{ question.choice_c }}'>
+            <input type="submit" name="choice" value='{{ question.choice_d }}'>
+        </form>
+    {% endif %}
+{% endblock %}

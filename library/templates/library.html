@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load cookie_consent_tags %}
+
+{% block content %}
+    {% if request|cookie_group_accepted:"optional" or request|cookie_group_declined:"optional" %}
+    <div id="contents">
+        <h1>Table of Contents</h1>
+        <h3>Trees</h3>
+        {% for tree in trees %}
+            <ul><a href="{{ tree.slug }}">{{ tree.name }}</a></ul>
+        {% endfor %}
+        <h3>Shrubs</h3>
+        {% for shrub in shrubs %}
+            <ul><a href="{{ shrub.slug }}">{{ shrub.name }}</a></ul>
+        {% endfor %}
+        <h3>Poisonous Lookalikes</h3>
+        {% for poisonous_lookalike in poisonous_lookalikes %}
+            <ul><a href="{{ poisonous_lookalike.slug }}">{{ poisonous_lookalike.name }}</a></ul>
+        {% endfor %}
+    </div>
+    {% endif %}
+{% endblock %}

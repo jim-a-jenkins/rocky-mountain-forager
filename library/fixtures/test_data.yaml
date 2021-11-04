@@ -1,0 +1,260 @@
+- model: cookie_consent.cookiegroup
+  pk: 1
+  fields:
+    varname: optional
+    name: optional
+    description: optional cookies
+    is_required: false
+    is_deletable: true
+    ordering: 0
+    created: 2021-10-19 01:59:13.733035+00:00
+- model: cookie_consent.cookie
+  pk: 1
+  fields:
+    cookiegroup: 1
+    name: optional_cookie
+    description: ''
+    path: /
+    domain: ''
+    created: 2021-10-19 02:53:32.003146+00:00
+- model: library.plant
+  pk: 1
+  fields:
+    name: Douglas-fir
+    slug: douglas-fir
+    latin_name: Pseudotsuga menziesii
+    family: Pine
+    food_text: Young needles can be used for tea. Inner bark can be eaten as emergency sustenance.
+    description: |
+      A coniferous evergreen tree with drooping branches that can grow up to 200ft tall. Needles are roughly 1.25 - 1.5
+      inches. Male and female cones exist on the same tree. Female cones are roughly 3" with 3-toothed bracts and are
+      light brown in color. Male cones are numerous and rust-colored.
+    medicinal_uses: Douglas-fir has antiseptic properties. Fir needle tea is high in vitamin C. 
+    warnings: |
+      Large amounts of evergreen tea can be toxic. Pregnant women should not drink this tea. Drink in moderation.
+    poisonous_look_alike: ''
+    trees: true
+    shrubs: false
+    lichens: false
+    herbs: false
+    poisonous: false
+    in_colorado: true
+    in_idaho: true
+    in_montana: true
+    in_new_mexico: true
+    in_utah: true
+    in_washington: true
+    in_wyoming: true
+- model: library.plant
+  pk: 2
+  fields:
+    name: Pinyon Pine
+    slug: pinyon-pine
+    latin_name: Pinus edulis
+    family: Pine
+    food_text: |
+      Seeds or "Pine nuts" can be harvested from the cones starting in early September. Green cones can be roasted to
+      release their seeds. Evergreen tea made from pine-needles is rich in vitamin A and C.
+    description: |
+      Also called Two-Needle Pinyon, the Pinyon Pine is an evergreen conifer with 1-2" long cones that have a rusty
+      color and spineless scales.
+    medicinal_uses: The resin and inner bark has antiseptic properties. 
+    warnings: |
+      Large amounts of evergreen tea can be toxic. Pregnant women should not drink this tea. Drink in moderation.
+    poisonous_look_alike: ''
+    trees: true
+    shrubs: false
+    lichens: false
+    herbs: false
+    poisonous: false
+    in_colorado: true
+    in_idaho: false
+    in_montana: false
+    in_new_mexico: true
+    in_utah: true
+    in_washington: false
+    in_wyoming: false
+- model: library.plant
+  pk: 3
+  fields:
+    name: Chokecherry
+    slug: chokecherry
+    latin_name: Prunus virginiana
+    family: Rose
+    food_text: |
+      Choke cherries get their name from their sour, puckering taste when eaten raw. They can be harvested between July
+      and October. Around this time, their color will change from bright red to dark red or black. 
+    description: |
+      A deciduous shrub which with grayish bark. Their leaves grow in an alternating pattern and have serrated edges.
+      In early summer, a creamy-white, 5-petaled flower forms at the end of each stem.
+    medicinal_uses: Dried cherry flesh may relieve stomach irritation.
+    warnings: Fruit pits (as well as barrk, leaves, and twigs) are poisonous and produce cyanide when ingested.
+    poisonous_look_alike: Buckthorn
+    trees: false
+    shrubs: true
+    lichens: false
+    herbs: false
+    poisonous: false
+    in_colorado: true
+    in_idaho: true
+    in_montana: true
+    in_new_mexico: true
+    in_utah: true
+    in_washington: true
+    in_wyoming: true
+- model: library.plant
+  pk: 4
+  fields:
+    name: Buckthorn
+    slug: buckthorn
+    latin_name: Rhamnus cathartica
+    family: Buckthorn
+    food_text: ''
+    description: |
+      A deciduous shrub with grey-brown bark and black berries. It has green, oval leaves and yellowish-green,
+      four-petaled flowers.
+    medicinal_uses: ''
+    warnings: The seeds or berries are mildly poisonous and cause a laxative effect. 
+    poisonous_look_alike: ''
+    trees: false
+    shrubs: true
+    lichens: false
+    herbs: false
+    poisonous: true
+    in_colorado: true
+    in_idaho: true
+    in_montana: true
+    in_new_mexico: false
+    in_utah: true
+    in_washington: true
+    in_wyoming: true
+- model: library.plant
+  pk: 5
+  fields:
+    name: Trembling Aspen
+    slug: trembling-aspen
+    latin_name: Populus tremuloides
+    family: Willow
+    food_text: |
+       Edible sap begins flowing in spring and can be eaten fresh. Catkins can be eaten raw or cooked and are high in
+       vitamin C. The inner bark can be eaten fresh or cooked. 
+    description: |
+      Trembling or Quaking Aspen is a deciduous tree with white bark and dark lines or spots. Its leaves are around 1-3"
+      with serrated edges and flattened stems.
+    medicinal_uses: |
+      Bark tea is said to reduce fevers, kill parasitic worms and have anti-inflammatory properties. The inner bark
+      contains salicin and, like Aspirin, can relieve pain. 
+    warnings: Due to the salicin content, people with ulcers should not consume the inner bark.
+    poisonous_look_alike: ''
+    trees: true
+    shrubs: false
+    lichens: false
+    herbs: false
+    poisonous: false
+    in_colorado: true
+    in_idaho: true
+    in_montana: true
+    in_new_mexico: true
+    in_utah: true
+    in_washington: true
+    in_wyoming: true
+- model: library.plant
+  pk: 6
+  fields:
+    name: Common Juniper
+    slug: common-juniper
+    latin_name: Juniperus communis
+    family: Cedar
+    food_text: |
+      Often crushed, ground and used for seasoning, Juniper berries are best harvested from August through December.
+    description: |
+      Typically growing somewhere between 1-3' tall, these evergreen shrubs have blue to blue-green berries and long
+      sharp needles.
+    medicinal_uses: |
+      Oil of Juniper can be used for its antiseptic properties.
+    warnings: Large amounts of Juniper can cause digestive irritation. Pregnant women should not consume.
+    poisonous_look_alike: Savin Juniper
+    trees: false
+    shrubs: true
+    lichens: false
+    herbs: false
+    poisonous: false
+    in_colorado: true
+    in_idaho: true
+    in_montana: true
+    in_new_mexico: true
+    in_utah: true
+    in_washington: true
+    in_wyoming: true
+- model: library.image
+  pk: 11
+  fields:
+    plant: 1
+    image_author: born1945
+    image_link: https://www.flickr.com/photos/12567713@N00/5606447150
+    license: CC BY 2.0
+    image: library/static/images/douglas-fir01.jpg
+- model: library.image
+  pk: 12
+  fields:
+    plant: 1
+    image_author: Dave Powell, USDA Forest Service
+    image_link: https://commons.wikimedia.org/wiki/File:Pseudotsuga_glauca_forest.jpg
+    license: CC BY 3.0 US
+    image: library/static/images/douglas-fir02.jpeg
+- model: library.image
+  pk: 13
+  fields:
+    plant: 2
+    image_author: Dave Powell, USDA Forest Service
+    image_link: https://commons.wikimedia.org/wiki/File:Pinus_edulis_cones.jpg
+    license: CC BY 3.0 US
+    image: library/static/images/pinyon-pine01.jpeg
+- model: library.image
+  pk: 14
+  fields:
+    plant: 2
+    image_author: Dave Powell, USDA Forest Service
+    image_link: https://commons.wikimedia.org/wiki/File:Pinus_edulis_foliage.jpg
+    license: CC BY 3.0 US
+    image: library/static/images/pinyon-pine02.jpeg
+- model: library.image
+  pk: 15
+  fields:
+    plant: 3
+    image_author: Ryan Hodnett
+    image_link: https://commons.wikimedia.org/wiki/File:Chokecherry_(Prunus_virginiana)_-_Kitchener,_Ontario_2019-07-28.jpg
+    license: CC BY-SA 4.0
+    image: library/static/images/chokecherry01.jpeg
+- model: library.image
+  pk: 16
+  fields:
+    plant: 3
+    image_author: Matt Lavin
+    image_link: https://www.flickr.com/photos/plant_diversity/50267315421
+    license: CC BY-SA 2.0
+    image: library/static/images/chokecherry02.jpg
+- model: library.image
+  pk: 17
+  fields:
+    plant: 4
+    image_author: AnemoneProjectors
+    image_link: https://commons.wikimedia.org/wiki/File:Buckthorn_(Rhamnus_cathartica),_fruit_(19860624419).jpg
+    license: CC BY-SA 2.0
+    image: library/static/images/buckthorn01.jpeg
+- model: library.image
+  pk: 18
+  fields:
+    plant: 4
+    image_author: Matt Lavin
+    image_link: https://www.flickr.com/photos/plant_diversity/8023755492
+    license: CC BY-SA 2.0
+    image: library/static/images/buckthorn02.jpg
+- model: library.image
+  pk: 19
+  fields:
+    plant: 5
+    image_author: Zion National Park
+    image_link: https://www.flickr.com/photos/zionnps/5205494244
+    license: CC BY 2.0
+    image: library/static/images/trembling-aspen01.jpeg

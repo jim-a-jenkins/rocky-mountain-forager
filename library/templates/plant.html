@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% load cookie_consent_tags %}
+{% load custom_filters %}
+{% load static %}
+
+{% block content %}
+    {% if request|cookie_group_accepted:"optional" or request|cookie_group_declined:"optional" %}
+    {% if plant.poisonous == True %}
+        <div class="warning">
+            <div class="warning-symbol">
+                <img src="/static/images/warning.jpeg" alt="WARNING!" width="50">
+            </div>
+            <div class="warning-msg">
+                <h3>WARNING: THIS PLANT IS POISONOUS!</h3>
+            </div>
+            <div class="warning-symbol">
+                <img src="/static/images/warning.jpeg" alt="WARNING!" width="50">
+            </div>
+        </div>
+    {% endif %}
+    <div class="plant-info">
+        <p><b>Name:</b> {{ plant }}</p>
+        <p><b>Latin Name:</b> {{ plant.latin_name }}</p>
+        <p><b>Group:</b> 
+            {% if plant.trees is True %}
+                Trees
+            {% elif plant.shrubs is True %}
+                Shrubs
+            {% elif plant.herbs is True %}
+                Herbs
+            {% elif plant.lichens is True %}
+                Lichens
+            {% endif %}
+        </p>
+        <p><b>Family:</b> {{ plant.family }}</p>
+        <p><b>Description:</b> {{ plant.description }}</p>
+        {% if plant.poisonous == False %}
+            <p><b>Food:</b> {{ plant.food_text }}</p>
+            <p><b>Medicinal Uses:</b> {{ plant.medicinal_uses }}</p>
+        {% endif %}
+        {% if plant.warnings %}
+            <p><b>Warnings:</b> {{ plant.warnings }}</p>
+        {% endif %}
+        {% if plant.poisonous_look_alike %}
+            <p><b>Poisonous Look Alike:</b> {{ plant.poisonous_look_alike }}</p>
+        {% endif %}
+    </div>
+        
+    <div class="row">
+    {% for image in images %}
+        {% with image|get_image_name as image_name %}
+            {% with 'images/'|add:image_name as image_static %}
+                <div class="column">
+                    <img src="{% static image_static %}" alt="{{ image.image_author }}, {{ image.license }}, {{ image.image_link }}" onclick="imageController(this, '{{ image.image_author }}', '{{ image.license }}', '{{ image.image_link }}');">
+                </div>
+            {% endwith %}
+        {% endwith %}
+    {% endfor %}
+    </div>
+
+    <!-- The expanding image container -->
+    <div class="container">
+      <!-- Close the image -->
+      <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+    
+      <!-- Expanded image -->
+      <img id="expandedImg" style="width:100%">
+    
+      <!-- Image text -->
+      <div id="imgtext"></div>
+    </div>
+        
+    <script type="text/javascript">
+        function imageController(imgs, author, license, link) {
+            // Get the expanded image
+            var expandImg = document.getElementById("expandedImg");
+            // Get the image text
+            var imgText = document.getElementById("imgtext");
+            // Use the same src in the expanded image as the image being clicked on from the grid
+            expandImg.src = imgs.src;
+            // Use the value of the alt attribute of the clickable image as text inside the expanded image
+            imgText.innerHTML = author + ', ' + license + ', ' + '<span><a href=' + link + '>' + link + '</a></span>';
+            // Show the container element (hidden with CSS)
+            expandImg.parentElement.style.display = "block";
+        }
+    </script>
+    
+    {% endif %}
+{% endblock %}
