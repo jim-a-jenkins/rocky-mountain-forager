@@ -39,7 +39,7 @@ class Question(models.Model):
     answer = models.CharField(max_length=100)
 
     def __str__(self):
-        return str(self.session) + '_' + self.question_name
+        return str(self.session) + "_" + self.question_name
 
 
 class Score(models.Model):

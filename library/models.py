@@ -35,7 +35,7 @@ class Image(models.Model):
     image_author = models.CharField(max_length=100)
     image_link = models.URLField(max_length=400)
     license = models.CharField(max_length=100)
-    image = models.ImageField(upload_to='library/static/images/')
+    image = models.ImageField(upload_to="library/static/images/")
 
     def __str__(self):
         return self.image.name.split("/").pop()
