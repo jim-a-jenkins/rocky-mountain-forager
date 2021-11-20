@@ -1,9 +1,12 @@
+import uuid
+
 from django.db import models
 from django.conf import settings
 from library.models import Image
 
 
 class Session(models.Model):
+    session_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     session_user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     # Types of plants to include
     include_trees = models.BooleanField(default=True)

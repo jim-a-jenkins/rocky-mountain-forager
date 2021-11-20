@@ -1,6 +1,6 @@
 from django.db.models import Q
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.views import View
 from .forms import SessionForm
 from .models import Session, Question, Score
@@ -9,10 +9,8 @@ import random
 
 
 class Flashcards(View):
-    game_template = "game.html"
-    flashcards_template = "flashcards.html"
-    score_template = "score.html"
-    answer_template = "answer.html"
+    flashcards_form = "flashcards_form.html"
+    flashcards_menu = "flashcards_menu.html"
     form_class = SessionForm
 
     def get(self, request, *args, **kwargs):
@@ -21,14 +19,10 @@ class Flashcards(View):
         )
         if session_in_progress:
             session = Session.objects.filter(session_user=request.user)[0]
-            question_name = str(session.id) + "_" + str(session.curr_position)
-            question = Question.objects.filter(question_name__exact=question_name)[0]
-            return render(
-                request, self.game_template, {"session": session, "question": question}
-            )
+            return render(request, self.flashcards_menu, {"session": session})
         else:
             form = self.form_class
-        return render(request, self.flashcards_template, {"form": form})
+        return render(request, self.flashcards_form, {"form": form})
 
     def post(self, request, *args, **kwargs):
         session_in_progress = (
@@ -36,63 +30,82 @@ class Flashcards(View):
         )
         if session_in_progress:
             session = Session.objects.filter(session_user=request.user)[0]
-            if (
-                request.POST.get("next")
-                and session.curr_position == session.total_questions - 1
-            ):
-                Session.objects.filter(session_user=session.session_user).delete()
-                score = session.num_correct * 100 // session.total_questions
-                Score.objects.create(user=session.session_user, score=score)
-                return render(
-                    request,
-                    self.score_template,
-                    {
-                        "num_correct": session.num_correct,
-                        "total_questions": session.total_questions,
-                        "score": score,
-                    },
-                )
-            elif request.POST.get("next"):
-                session.curr_position += 1
-                questions = Question.objects.filter(session_id=session.id)
-                Session.objects.filter(session_user=request.user).update(
-                    curr_position=session.curr_position
-                )
-                return render(
-                    request,
-                    self.game_template,
-                    {"question": questions[session.curr_position]},
-                )
+            if request.POST.get("choice") == "Continue Session":
+                return HttpResponseRedirect(str(session.session_id))
             else:
-                question_name = str(session.id) + "_" + str(session.curr_position)
-                question = Question.objects.filter(question_name__exact=question_name)[
-                    0
-                ]
-                correct_answer = request.POST.get("choice") == question.answer
-                if correct_answer:
-                    session.num_correct += 1
-                Session.objects.filter(session_user=request.user).update(
-                    num_correct=session.num_correct
-                )
-                return render(
-                    request,
-                    self.answer_template,
-                    {"correct_answer": correct_answer, "question": question},
-                )
+                Session.objects.filter(session_user=session.session_user).delete()
+                form = self.form_class
+                return render(request, self.flashcards_form, {"form": form})
         else:
             form = self.form_class(request.POST)
             if form.is_valid():
                 cd = form.cleaned_data
                 session = create_session(request, cd)
                 generate_questions(cd, session)
-                questions = Question.objects.filter(session_id=session.id)
-                return render(
-                    request,
-                    self.game_template,
-                    {"session": session, "question": questions[0]},
-                )
+                return HttpResponseRedirect(str(session.session_id))
             else:
                 return HttpResponse("Failed to create flashcards session")
+
+
+class Game(View):
+    answer_template = "answer.html"
+    game_template = "game.html"
+    score_template = "score.html"
+
+    def get(self, request, *args, **kwargs):
+        session_id = kwargs.get("session_id")
+        session = Session.objects.filter(session_id=session_id)[0]
+        questions = Question.objects.filter(session_id=session_id)
+        return render(
+            request,
+            self.game_template,
+            {"question": questions[session.curr_position]},
+        )
+
+    def post(self, request, *args, **kwargs):
+        session_id = kwargs.get("session_id")
+        session = Session.objects.filter(session_id=session_id)[0]
+        if (
+            request.POST.get("next")
+            and session.curr_position == session.total_questions
+        ):
+            Session.objects.filter(session_user=session.session_user).delete()
+            score = session.num_correct * 100 // session.total_questions
+            Score.objects.create(user=session.session_user, score=score)
+            return render(
+                request,
+                self.score_template,
+                {
+                    "num_correct": session.num_correct,
+                    "total_questions": session.total_questions,
+                    "score": score,
+                },
+            )
+        elif request.POST.get("next"):
+            questions = Question.objects.filter(session_id=session_id)
+            Session.objects.filter(session_user=request.user).update(
+                curr_position=session.curr_position
+            )
+            return render(
+                request,
+                self.game_template,
+                {"question": questions[session.curr_position]},
+            )
+        else:
+            question_name = str(session_id) + "_" + str(session.curr_position)
+            question = Question.objects.filter(question_name__exact=question_name)[0]
+            correct_answer = request.POST.get("choice") == question.answer
+            if correct_answer:
+                session.num_correct += 1
+            session.curr_position += 1
+            Session.objects.filter(session_user=request.user).update(
+                num_correct=session.num_correct, curr_position=session.curr_position
+            )
+            return render(
+                request,
+                self.answer_template,
+                {"correct_answer": correct_answer, "question": question},
+            )
 
 
 def generate_questions(cd, session):
@@ -131,9 +144,9 @@ def generate_questions(cd, session):
                             other_options.remove(choice)
                             try_again = False
             Question.objects.create(
-                session_id=session.id,
+                session_id=session.session_id,
                 plant_image=image,
-                question_name=str(session.id) + f"_{counter}",
+                question_name=str(session.session_id) + f"_{counter}",
                 choice_a=choices["a"],
                 choice_b=choices["b"],
                 choice_c=choices["c"],

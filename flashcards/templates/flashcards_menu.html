@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load cookie_consent_tags %}
+
+{% block content %}
+    {% if request|cookie_group_accepted:"optional" or request|cookie_group_declined:"optional" %}
+    <div id="flashcards">
+        <h1>Flashcards</h1>
+        {% if request.user.is_authenticated %}
+            <p>You have a flashcards session in progress. Select one of the following options:</p>
+            <form method="post">
+                {% csrf_token %}
+                <input type="submit" name="choice" value='Continue Session'>
+                <input type="submit" name="choice" value='Restart'>
+            </form>
+        {% else %}
+            <p>To use Flashcards and track your session history, <a href="{% url "library:login" %}">login</a> or 
+                <a href="{% url "library:register" %}">create an account</a></p>
+        {% endif %}
+    </div>
+    {% endif %}
+{% endblock %}
