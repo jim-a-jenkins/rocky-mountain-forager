@@ -1,8 +1,12 @@
-from django.shortcuts import render, get_object_or_404
-from .models import Plant, Image
-from flashcards.models import Score
 from django.contrib.auth.decorators import login_required
-from .forms import UserRegistrationForm
+from django.http import HttpResponse
+from django.shortcuts import render, get_object_or_404
+from flashcards.models import Score
+from library.forms import UserRegistrationForm
+from library.models import Image, Plant
+from library.serializers import ImageSerializer, PlantSerializer
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
 
 def library(request):
@@ -43,3 +47,43 @@ def register(request):
     else:
         user_form = UserRegistrationForm()
     return render(request, "register.html", {"user_form": user_form})
+
+
+@api_view(["GET"])
+def images(request):
+    if request.method == "GET":
+        images = Image.objects.all()
+        serializer = ImageSerializer(images, many=True)
+        return Response(serializer.data)
+
+
+@api_view(["GET"])
+def image(request, pk):
+    try:
+        image = Image.objects.get(pk=pk)
+    except Image.DoesNotExist:
+        return HttpResponse(status=404)
+
+    if request.method == "GET":
+        serializer = ImageSerializer(image)
+        return Response(serializer.data)
+
+
+@api_view(["GET"])
+def plants(request):
+    if request.method == "GET":
+        plants = Plant.objects.all()
+        serializer = PlantSerializer(plants, many=True)
+        return Response(serializer.data)
+
+
+@api_view(["GET"])
+def plant(request, pk):
+    try:
+        plant = Plant.objects.get(pk=pk)
+    except Plant.DoesNotExist:
+        return HttpResponse(status=404)
+
+    if request.method == "GET":
+        serializer = PlantSerializer(plant)
+        return Response(serializer.data)
