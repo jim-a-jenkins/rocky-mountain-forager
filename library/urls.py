@@ -12,7 +12,7 @@ from library.views import plant
 app_name = "library"
 
 urlpatterns = [
-    path("", library, name="library"),
+    path("library/", library, name="library"),
     path("login/", auth_views.LoginView.as_view(), name="login"),
     path("logout/", auth_views.LogoutView.as_view(), name="logout"),
     path("account/", account, name="account"),
@@ -53,10 +53,10 @@ urlpatterns = [
         name="password_reset_complete",
     ),
     path("register/", register, name="register"),
-    path("<slug:plant>/", plant_detail, name="plant_detail"),
+    path("library/<slug:plant>/", plant_detail, name="plant_detail"),
     # api
-    path("api/v1/images/", images),
-    path("api/v1/images/<int:pk>", image),
-    path("api/v1/plants/", plants),
-    path("api/v1/plants/<int:pk>", plant),
+    path("api/v1/images/", images, name="images"),
+    path("api/v1/images/<int:pk>", image, name="image"),
+    path("api/v1/plants/", plants, name="plants"),
+    path("api/v1/plants/<int:pk>", plant, name="plant"),
 ]

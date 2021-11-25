@@ -12,9 +12,9 @@ urlpatterns = [
     path("flashcards/", Flashcards.as_view(), name="flashcards"),
     path("flashcards/<uuid:session_id>", Game.as_view(), name="game"),
     # api
-    path("scores/", scores),
-    path("sessions/", sessions),
-    path("sessions/<uuid:session_id>", session),
-    path("questions/", questions),
-    path("questions/<int:pk>", question),
+    path("scores/", scores, name="scores"),
+    path("sessions/", sessions, name="sessions"),
+    path("sessions/<uuid:session_id>", session, name="session"),
+    path("questions/", questions, name="questions"),
+    path("questions/<int:pk>", question, name="question"),
 ]

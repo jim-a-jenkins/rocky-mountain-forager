@@ -53,5 +53,3 @@ class QuestionSerializer(serializers.ModelSerializer):
             "choice_d",
             "answer",
         )
-
-

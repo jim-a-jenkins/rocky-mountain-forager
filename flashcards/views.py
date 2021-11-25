@@ -244,7 +244,7 @@ def sessions(request):
         sessions = Session.objects.all()
         serializer = SessionSerializer(sessions, many=True)
         return Response(serializer.data)
-    elif request.method == 'POST':
+    elif request.method == "POST":
         data = {
             "session_id": request.data.get("session_id"),
             "session_user": request.data.get("session_user"),
