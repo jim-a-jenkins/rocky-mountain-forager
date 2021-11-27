@@ -231,6 +231,26 @@ def get_extra_options_names(plants):
 
 
 @api_view(["GET"])
+def questions(request):
+    if request.method == "GET":
+        questions = Question.objects.all()
+        serializer = QuestionSerializer(questions, many=True)
+        return Response(serializer.data)
+
+
+@api_view(["GET"])
+def question(request, pk):
+    try:
+        question = Question.objects.get(pk=pk)
+    except Question.DoesNotExist:
+        return HttpResponse(status=404)
+
+    if request.method == "GET":
+        serializer = QuestionSerializer(question)
+        return Response(serializer.data)
+
+
+@api_view(["GET"])
 def scores(request):
     if request.method == "GET":
         scores = Score.objects.all()
@@ -280,24 +300,4 @@ def session(request, session_id):
 
     if request.method == "GET":
         serializer = SessionSerializer(session)
-        return Response(serializer.data)
-
-
-@api_view(["GET"])
-def questions(request):
-    if request.method == "GET":
-        questions = Question.objects.all()
-        serializer = QuestionSerializer(questions, many=True)
-        return Response(serializer.data)
-
-
-@api_view(["GET"])
-def question(request, pk):
-    try:
-        question = Question.objects.get(pk=pk)
-    except Question.DoesNotExist:
-        return HttpResponse(status=404)
-
-    if request.method == "GET":
-        serializer = QuestionSerializer(question)
         return Response(serializer.data)
