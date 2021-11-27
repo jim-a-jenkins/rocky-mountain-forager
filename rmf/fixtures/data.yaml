@@ -271,6 +271,120 @@
     in_utah: true
     in_washington: true
     in_wyoming: true
+- model: library.plant
+  pk: 10
+  fields:
+    name: Wild Hyacinth
+    slug: wild-hyacinth
+    latin_name: Triteleia grandiflora
+    family: Lily
+    food_text: |
+      Wild Hyacinth roots can be dug starting in spring. Corms can be eaten raw, but are best when roasted or boiled.
+      Practice proper harvesting techniques by leaving twice as much as you take.
+    description: |
+      Also known as Fool's onion, Wild Hyacinth is a perennial herb found in grasslands and meadows. It has pale to deep
+      blue petals (3 outer petals and 3 inner petals) that bloom April through July. It grows 8-24" tall.
+    medicinal_uses: ''
+    warnings: Wild Hyacinth can be confused with Death Camas. Death Camas has white flowers.
+    poisonous_look_alike: Death Camas
+    trees: false
+    shrubs: false
+    lichens: false
+    herbs: true
+    poisonous: false
+    in_colorado: true
+    in_idaho: true
+    in_montana: true
+    in_new_mexico: false
+    in_utah: true
+    in_washington: true
+    in_wyoming: true
+- model: library.plant
+  pk: 11
+  fields:
+    name: Wild Onion
+    slug: wild-onion
+    latin_name: Allium cernuum
+    family: Lily
+    food_text: |
+      Wild onions bulbs can be eaten raw or prepared for consumption just like domestic onions. Their flowers and leaves
+      are also edible and can be used as a garnish. 
+    description: |
+      Wild onions have a strong onion smell making them easily identifiable. They are perennial with bell-shaped
+      flowers, each cluster having 6 pinkish-white petals. They typically grow in the plains and foothills. 
+    medicinal_uses: |
+      Onions have anti-bacterial and anti-viral properties. Extracted juice from bulbs can be used to soothe sore
+      throats.
+    warnings: |
+      Wild onions can be confused with Death Camas. Death Camas has white flowers and does not smell like onion. Wild
+      onions are toxic to cats and dogs.
+    poisonous_look_alike: Death Camas
+    trees: false
+    shrubs: false
+    lichens: false
+    herbs: true
+    poisonous: false
+    in_colorado: true
+    in_idaho: true
+    in_montana: true
+    in_new_mexico: true
+    in_utah: true
+    in_washington: true
+    in_wyoming: true
+- model: library.plant
+  pk: 12
+  fields:
+    name: Common camas
+    slug: common-camas
+    latin_name: Camassia quamash
+    family: Lily
+    food_text: The oval shaped bulb is edible and should be cooked before eating to avoid indigestion. 
+    description: |
+      Also known as Blue camas, Common camas grows in moist meadows and plains. It has 6 pale to deep blue petals in a
+      star formation. 
+    medicinal_uses: ''
+    warnings: |
+      Common camas can be confused with Death Camas. Death Camas has white flowers. Large quantities of Common camas can
+      result in indegstion and vomiting.
+    poisonous_look_alike: Death Camas
+    trees: false
+    shrubs: false
+    lichens: false
+    herbs: true
+    poisonous: false
+    in_colorado: false
+    in_idaho: true
+    in_montana: true
+    in_new_mexico: false
+    in_utah: true
+    in_washington: true
+    in_wyoming: true
+- model: library.plant
+  pk: 13
+  fields:
+    name: Bear Grass
+    slug: bear-grass
+    latin_name: Xerophyllum tenax 
+    family: Lily
+    food_text: |
+      The roots are edible and are best eaten after roasting. Practice proper harvesting techniques by leaving twice as
+      much as you take.
+    description: An evergreen perennial with grass-like leaves and white, fragrant flowers that form a thick cluster.
+    medicinal_uses: ''
+    warnings: ''
+    poisonous_look_alike: ''
+    trees: false
+    shrubs: false
+    lichens: false
+    herbs: true
+    poisonous: false
+    in_colorado: false
+    in_idaho: true
+    in_montana: true
+    in_new_mexico: false
+    in_utah: false
+    in_washington: true
+    in_wyoming: true
 - model: library.image
   pk: 11
   fields:
@@ -415,17 +529,70 @@
     image_link: https://commons.wikimedia.org/wiki/File:Ribes_lacustre_10504.JPG
     license: CC BY-SA 3.0
     image: library/static/images/prickly-currant02.jpeg
-
-
-
-
-
-
-
-
-
-
-
+- model: library.image
+  pk: 29
+  fields:
+    plant: 10
+    image_author: Matt Lavin
+    image_link: https://commons.wikimedia.org/wiki/File:Triteleia_grandiflora_(3625584917).jpg
+    license: CC BY-SA 2.0
+    image: library/static/images/wild-hyacinth01.jpeg
+- model: library.image
+  pk: 30
+  fields:
+    plant: 10
+    image_author: Thayne Tuason
+    image_link: https://commons.wikimedia.org/wiki/File:Triteleia_grandiflora-4-25-05.jpg
+    license: CC BY-SA 4.0
+    image: library/static/images/wild-hyacinth02.jpeg
+- model: library.image
+  pk: 31
+  fields:
+    plant: 11
+    image_author: Fritzflohrreynolds
+    image_link: https://commons.wikimedia.org/wiki/File:Allium_cernuum_-_Nodding_Onion_3.jpg
+    license: CC BY-SA 3.0
+    image: library/static/images/wild-onion01.jpeg
+- model: library.image
+  pk: 32
+  fields:
+    plant: 11
+    image_author: Fritzflohrreynolds
+    image_link: https://commons.wikimedia.org/wiki/File:Allium_cernuum_-_Nodding_Onion_2.jpg
+    license: CC BY-SA 3.0
+    image: library/static/images/wild-onion02.jpeg
+- model: library.image
+  pk: 33
+  fields:
+    plant: 12
+    image_author: Walter Siegmund
+    image_link: https://commons.wikimedia.org/wiki/File:Camassia_quamash_6374.JPG
+    license: CC BY-SA 3.0
+    image: library/static/images/common-camas01.jpeg
+- model: library.image
+  pk: 34
+  fields:
+    plant: 12
+    image_author: Walter Siegmund
+    image_link: https://commons.wikimedia.org/wiki/File:Camassia_quamash_07008.JPG
+    license: CC BY-SA 3.0
+    image: library/static/images/common-camas02.jpeg
+- model: library.image
+  pk: 35
+  fields:
+    plant: 13
+    image_author: Walter Siegmund
+    image_link: https://commons.wikimedia.org/wiki/File:Xerophyllum_tenax_1111.JPG
+    license: CC BY-SA 3.0
+    image: library/static/images/bear-grass01.jpeg
+- model: library.image
+  pk: 36
+  fields:
+    plant: 13
+    image_author: brewbooks
+    image_link: https://commons.wikimedia.org/wiki/File:Xerophyllum_tenax_-_Red,_White_and_Blue_garden_on_Granite_Mountain.jpg
+    license: CC BY-SA 2.0
+    image: library/static/images/bear-grass02.jpeg
 
 
 

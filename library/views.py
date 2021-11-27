@@ -12,6 +12,7 @@ from rest_framework.response import Response
 def library(request):
     trees = Plant.objects.filter(trees=True, poisonous=False)
     shrubs = Plant.objects.filter(shrubs=True, poisonous=False)
+    herbs = Plant.objects.filter(herbs=True, poisonous=False)
     poisonous_lookalikes = Plant.objects.filter(poisonous=True)
     return render(
         request,
@@ -19,6 +20,7 @@ def library(request):
         context={
             "trees": trees,
             "shrubs": shrubs,
+            "herbs": herbs,
             "poisonous_lookalikes": poisonous_lookalikes,
         },
     )
