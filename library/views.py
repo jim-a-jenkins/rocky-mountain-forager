@@ -5,6 +5,7 @@ from flashcards.models import Score
 from library.forms import UserRegistrationForm
 from library.models import Image, Plant
 from library.serializers import ImageSerializer, PlantSerializer
+from rest_framework import generics
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
@@ -13,6 +14,7 @@ def library(request):
     trees = Plant.objects.filter(trees=True, poisonous=False)
     shrubs = Plant.objects.filter(shrubs=True, poisonous=False)
     herbs = Plant.objects.filter(herbs=True, poisonous=False)
+    lichens = Plant.objects.filter(lichens=True, poisonous=False)
     poisonous_lookalikes = Plant.objects.filter(poisonous=True)
     return render(
         request,
@@ -21,6 +23,7 @@ def library(request):
             "trees": trees,
             "shrubs": shrubs,
             "herbs": herbs,
+            "lichens": lichens,
             "poisonous_lookalikes": poisonous_lookalikes,
         },
     )
@@ -51,24 +54,16 @@ def register(request):
     return render(request, "register.html", {"user_form": user_form})
 
 
-@api_view(["GET"])
-def images(request):
-    if request.method == "GET":
-        images = Image.objects.all()
-        serializer = ImageSerializer(images, many=True)
-        return Response(serializer.data)
+#  API
+
+class ImagesListAPIView(generics.ListAPIView):
+    queryset = Image.objects.all()
+    serializer_class = ImageSerializer
 
 
-@api_view(["GET"])
-def image(request, pk):
-    try:
-        image = Image.objects.get(pk=pk)
-    except Image.DoesNotExist:
-        return HttpResponse(status=404)
-
-    if request.method == "GET":
-        serializer = ImageSerializer(image)
-        return Response(serializer.data)
+class ImageRetrieveAPIView(generics.RetrieveAPIView):
+    queryset = Image.objects.all()
+    serializer_class = ImageSerializer
 
 
 @api_view(["GET"])

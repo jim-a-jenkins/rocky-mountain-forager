@@ -17,6 +17,10 @@
         {% for herb in herbs %}
             <ul><a href="{{ herb.slug }}">{{ herb.name }}</a></ul>
         {% endfor %}
+        <h3>Lichens</h3>
+        {% for lichen in lichens %}
+            <ul><a href="{{ lichen.slug }}">{{ lichen.name }}</a></ul>
+        {% endfor %}
         <h3>Poisonous Lookalikes</h3>
         {% for poisonous_lookalike in poisonous_lookalikes %}
             <ul><a href="{{ poisonous_lookalike.slug }}">{{ poisonous_lookalike.name }}</a></ul>

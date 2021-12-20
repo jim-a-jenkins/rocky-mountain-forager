@@ -385,6 +385,60 @@
     in_utah: false
     in_washington: true
     in_wyoming: true
+- model: library.plant
+  pk: 14
+  fields:
+    name: Iceland Moss
+    slug: iceland-moss
+    latin_name: Cetraria islandica
+    family: Leaf Lichens
+    food_text: Iceland Moss is rich in starches but is low in both protein and fat. They can be harvested year round.
+    description: |
+      An upright lichen that grows in groups spanning approximately 2-8" and grows upright between 1-2". It is often
+      found in subalpine and alpine zones. It has a green-brown surface and a white underside.
+    medicinal_uses: |
+      Iceland Moss is a popular remedy for coughs and bronchitis. It is rich in mucilage and has disinfectant and
+      antibiotic properties.
+    warnings: Leach in several changes of water before eating to avoid an upset stomach caused by strong acids.
+    poisonous_look_alike: ''
+    trees: false
+    shrubs: false
+    lichens: true
+    herbs: false
+    poisonous: false
+    in_colorado: true
+    in_idaho: false
+    in_montana: false
+    in_new_mexico: false
+    in_utah: false
+    in_washington: true
+    in_wyoming: false
+- model: library.plant
+  pk: 15
+  fields:
+    name: Reindeer Moss
+    slug: reindeer-moss
+    latin_name: Cladonia rangiferina
+    family: Reindeer Lichens
+    food_text: |
+      Besides being eaten plain (after leaching), Reindeer Moss can also be dried and ground into flour to be used in
+      breads and soups. 
+    description: A fine branched, pale gray lichen that grows in open subalpine and alpine environments.
+    medicinal_uses: Reindeer Moss can be boiled to make medicinal teas for treating fever and diarrhea.
+    warnings: Leach in several changes of water before eating to avoid an upset stomach caused by strong acids.
+    poisonous_look_alike: ''
+    trees: false
+    shrubs: false
+    lichens: true
+    herbs: false
+    poisonous: false
+    in_colorado: true
+    in_idaho: true
+    in_montana: true
+    in_new_mexico: false
+    in_utah: false
+    in_washington: true
+    in_wyoming: true
 - model: library.image
   pk: 11
   fields:
@@ -593,9 +647,38 @@
     image_link: https://commons.wikimedia.org/wiki/File:Xerophyllum_tenax_-_Red,_White_and_Blue_garden_on_Granite_Mountain.jpg
     license: CC BY-SA 2.0
     image: library/static/images/bear-grass02.jpeg
-
-
-
+- model: library.image
+  pk: 37
+  fields:
+    plant: 14
+    image_author: Björn S...
+    image_link: https://commons.wikimedia.org/wiki/File:Iceland_moss_-_Cetraria_islandica_(44477376442).jpg
+    license: CC BY-SA 2.0
+    image: library/static/images/iceland-moss01.jpeg
+- model: library.image
+  pk: 38
+  fields:
+    plant: 14
+    image_author: User:Tigerente
+    image_link: https://commons.wikimedia.org/wiki/File:Cetraria_islandica.jpg
+    license: CC BY-SA 3.0
+    image: library/static/images/iceland-moss02.jpeg
+- model: library.image
+  pk: 39
+  fields:
+    plant: 15
+    image_author: Paul Morris
+    image_link: https://commons.wikimedia.org/wiki/File:Cladonia_rangiferina_1.jpg
+    license: CC BY-SA 2.0
+    image: library/static/images/reindeer-moss01.jpeg
+- model: library.image
+  pk: 40
+  fields:
+    plant: 15
+    image_author: Carly Anderson Stewart
+    image_link: https://commons.wikimedia.org/wiki/File:Cladonia_rangiferina_in_Highlands,_North_Carolina.jpg
+    license: CC BY 4.0
+    image: library/static/images/reindeer-moss02.jpeg
 
 
 
