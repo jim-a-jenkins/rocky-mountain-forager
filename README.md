@@ -16,6 +16,6 @@ RMF is a Python/Django application and requires the following steps to setup and
 - ``pip install -r requirements.txt``
 - ``python manage.py migrate``
 #### Load data and run the server
-- ``python manage.py loaddata library/fixtures/test_data.yaml``
+- ``python manage.py loaddata rmf/fixtures/data.yaml``
 - ``python manage.py runserver``
-- Visit http://127.0.0.1:8000/
+- Visit http://127.0.0.1:8000/library
