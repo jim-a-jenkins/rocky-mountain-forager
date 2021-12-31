@@ -439,6 +439,34 @@
     in_utah: false
     in_washington: true
     in_wyoming: true
+- model: library.plant
+  pk: 16
+  fields:
+    name: Old man's beard
+    slug: old-mans-beard
+    latin_name: Usnea spp.
+    family: Hair Lichens
+    food_text: Best used as emergency food, the entire lichen can be eaten after leaching.
+    description: |
+      A beard-like hanging lichen that grows from the bark of trees and has a distinct central cord. It is yellow-green
+      in color.
+    medicinal_uses: |
+      Old man's beard contains usnic acid which is an antimicrobial substance and has been known to treat skin
+      irritations, sore throats and coughs. It can be applied as an emergency dressing to open wounds.
+    warnings: Usnea has been linked to liver damage when consumed in large quantities.
+    poisonous_look_alike: ''
+    trees: false
+    shrubs: false
+    lichens: true
+    herbs: false
+    poisonous: false
+    in_colorado: true
+    in_idaho: true
+    in_montana: true
+    in_new_mexico: true
+    in_utah: true
+    in_washington: true
+    in_wyoming: true
 - model: library.image
   pk: 11
   fields:
@@ -679,8 +707,22 @@
     image_link: https://commons.wikimedia.org/wiki/File:Cladonia_rangiferina_in_Highlands,_North_Carolina.jpg
     license: CC BY 4.0
     image: library/static/images/reindeer-moss02.jpeg
-
-
+- model: library.image
+  pk: 41
+  fields:
+    plant: 16
+    image_author: Bernd Haynold
+    image_link: https://commons.wikimedia.org/wiki/File:Usnea_filipendula_170406.jpg
+    license: CC BY 3.0
+    image: library/static/images/old-mans-beard01.jpeg
+- model: library.image
+  pk: 42
+  fields:
+    plant: 16
+    image_author: Harry Rose
+    image_link: https://www.flickr.com/photos/macleaygrassman/50842726238
+    license: CC BY 2.0
+    image: library/static/images/old-mans-beard02.jpeg
 
 
 
