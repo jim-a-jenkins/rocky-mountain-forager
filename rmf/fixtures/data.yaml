@@ -467,6 +467,106 @@
     in_utah: true
     in_washington: true
     in_wyoming: true
+- model: library.plant
+  pk: 17
+  fields:
+    name: Oak Moss
+    slug: oak-moss
+    latin_name: Evernia prunastri
+    family: Hair Lichens
+    food_text: Best used as emergency food, the entire lichen can be eaten after leaching.
+    description: |
+      A hanging lichen with a coral-like structure, it is green-grey in color and commonly grows and hardwood trees.
+    medicinal_uses: Its oil has antiseptic properties
+    warnings:  Oak Moss contains the toxin thujone. Do not consume in large quantities.
+    poisonous_look_alike: ''
+    trees: false
+    shrubs: false
+    lichens: true
+    herbs: false
+    poisonous: false
+    in_colorado: true
+    in_idaho: true
+    in_montana: true
+    in_new_mexico: false
+    in_utah: false
+    in_washington: true
+    in_wyoming: false
+- model: library.plant
+  pk: 18
+  fields:
+    name: Savin Juniper
+    slug: savin-juniper
+    latin_name: Juniperus sabina
+    family: ''
+    food_text: ''
+    description: |
+      Typically planted as an ornamental species of Juniper, Savin Juniper branches have an ascending growth pattern.
+    medicinal_uses: ''
+    warnings: All parts of the plant are poisonous.
+    poisonous_look_alike: ''
+    trees: false
+    shrubs: true
+    lichens: false
+    herbs: false
+    poisonous: true
+    in_colorado: false
+    in_idaho: false
+    in_montana: false
+    in_new_mexico: false
+    in_utah: false
+    in_washington: false
+    in_wyoming: false
+- model: library.plant
+  pk: 19
+  fields:
+    name: Sticky Currant
+    slug: sticky-currant
+    latin_name: Ribes viscosissimum
+    family: ''
+    food_text: ''
+    description: As its name suggests, sticky currant is covered in sticky hairs but lacks spines or bristles.
+    medicinal_uses: ''
+    warnings: This plant has been known to cause vomiting.
+    poisonous_look_alike: ''
+    trees: false
+    shrubs: true
+    lichens: false
+    herbs: false
+    poisonous: true
+    in_colorado: true
+    in_idaho: true
+    in_montana: true
+    in_new_mexico: false
+    in_utah: true
+    in_washington: true
+    in_wyoming: true
+- model: library.plant
+  pk: 20
+  fields:
+    name: Death Camas
+    slug: death-camas
+    latin_name: Toxicoscordion venenosum
+    family: ''
+    food_text: ''
+    description: |
+      Death Camas has long, grass-like leaves and oval bulbs that look like onion but do not smell like onion. Flowers
+      are white and grow in clusters.
+    medicinal_uses: ''
+    warnings: All parts of this plant are poisonous.
+    poisonous_look_alike: ''
+    trees: false
+    shrubs: false
+    lichens: false
+    herbs: true
+    poisonous: true
+    in_colorado: true
+    in_idaho: true
+    in_montana: true
+    in_new_mexico: true
+    in_utah: true
+    in_washington: true
+    in_wyoming: true
 - model: library.image
   pk: 11
   fields:
@@ -723,7 +823,67 @@
     image_link: https://www.flickr.com/photos/macleaygrassman/50842726238
     license: CC BY 2.0
     image: library/static/images/old-mans-beard02.jpeg
-
-
-
-
+- model: library.image
+  pk: 43
+  fields:
+    plant: 17
+    image_author: Björn S...
+    image_link: https://commons.wikimedia.org/wiki/File:Oakmoss_-_Evernia_prunastri_(25494445213).jpg
+    license: CC BY-SA 2.0
+    image: library/static/images/oak-moss01.jpeg
+- model: library.image
+  pk: 44
+  fields:
+    plant: 17
+    image_author: Björn S...
+    image_link: https://commons.wikimedia.org/wiki/File:Oakmoss_-_Evernia_prunastri_(34002269820).jpg
+    license: CC BY-SA 2.0
+    image: library/static/images/oak-moss02.jpeg
+- model: library.image
+  pk: 45
+  fields:
+    plant: 18
+    image_author: H. Zell
+    image_link: https://commons.wikimedia.org/wiki/File:Juniperus_sabina_003.JPG
+    license: CC BY-SA 3.0
+    image: library/static/images/savin-juniper01.jpeg
+- model: library.image
+  pk: 46
+  fields:
+    plant: 18
+    image_author: MPF
+    image_link: https://commons.wikimedia.org/wiki/File:Juniperus_sabina_cult1.jpg
+    license: CC BY-SA 3.0
+    image: library/static/images/savin-juniper02.jpeg
+- model: library.image
+  pk: 47
+  fields:
+    plant: 19
+    image_author: Walter Siegmund
+    image_link: https://commons.wikimedia.org/wiki/File:Ribes_viscosissimum_15277.JPG
+    license: CC BY-SA 3.0
+    image: library/static/images/sticky-currant01.jpeg
+- model: library.image
+  pk: 48
+  fields:
+    plant: 19
+    image_author: Walter Siegmund
+    image_link: https://commons.wikimedia.org/wiki/File:Ribes_viscosissimum_15259.JPG
+    license: CC BY-SA 3.0
+    image: library/static/images/sticky-currant02.jpeg
+- model: library.image
+  pk: 49
+  fields:
+    plant: 20
+    image_author: Thayne Tuason
+    image_link: https://commons.wikimedia.org/wiki/File:Toxicoscordion_venenosum_var._venenosum_2.jpg
+    license: CC BY-SA 4.0
+    image: library/static/images/death-camas01.jpeg
+- model: library.image
+  pk: 50
+  fields:
+    plant: 20
+    image_author: Jason Hollinger
+    image_link: https://commons.wikimedia.org/wiki/File:Toxicoscordion_venenosum_var._venenosum_-_Flickr_-_pellaea_(1).jpg
+    license: CC BY-SA 2.0
+    image: library/static/images/death-camas02.jpeg
