@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
+from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, get_object_or_404
 from flashcards.models import Score
 from library.forms import UserRegistrationForm
@@ -10,7 +10,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
 
-def library(request):
+def library(request: HttpRequest) -> HttpResponse:
     trees = Plant.objects.filter(trees=True, poisonous=False)
     shrubs = Plant.objects.filter(shrubs=True, poisonous=False)
     herbs = Plant.objects.filter(herbs=True, poisonous=False)
@@ -29,19 +29,19 @@ def library(request):
     )
 
 
-def plant_detail(request, plant):
+def plant_detail(request: HttpRequest, plant) -> HttpResponse:
     plant = get_object_or_404(Plant, slug=plant)
     images = Image.objects.filter(plant__name__exact=plant.name)
     return render(request, "plant.html", context={"plant": plant, "images": images})
 
 
 @login_required
-def account(request):
+def account(request: HttpRequest)  -> HttpResponse:
     scores = Score.objects.all()
     return render(request, "account.html", {"scores": scores})
 
 
-def register(request):
+def register(request: HttpRequest) -> HttpResponse:
     if request.method == "POST":
         user_form = UserRegistrationForm(request.POST)
         if user_form.is_valid():
@@ -67,7 +67,7 @@ class ImageRetrieveAPIView(generics.RetrieveAPIView):
 
 
 @api_view(["GET"])
-def plants(request):
+def plants(request: HttpRequest):
     if request.method == "GET":
         plants = Plant.objects.all()
         serializer = PlantSerializer(plants, many=True)
@@ -75,7 +75,7 @@ def plants(request):
 
 
 @api_view(["GET"])
-def plant(request, pk):
+def plant(request: HttpRequest, pk):
     try:
         plant = Plant.objects.get(pk=pk)
     except Plant.DoesNotExist:

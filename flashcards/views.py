@@ -1,6 +1,6 @@
 from django.db.models import Q
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 from django.views import View
 from flashcards.forms import SessionForm
 from flashcards.models import Session, Question, Score
@@ -20,7 +20,7 @@ class Flashcards(View):
     flashcards_menu = "flashcards_menu.html"
     form_class = SessionForm
 
-    def get(self, request, *args, **kwargs):
+    def get(self, request: HttpRequest) -> HttpResponse:
         session_in_progress = (
             len(Session.objects.filter(session_user_id=request.user.id)) != 0
         )
@@ -31,7 +31,7 @@ class Flashcards(View):
             form = self.form_class
         return render(request, self.flashcards_form, {"form": form})
 
-    def post(self, request, *args, **kwargs):
+    def post(self, request: HttpRequest) -> HttpResponse:
         session_in_progress = (
             len(Session.objects.filter(session_user_id=request.user.id)) != 0
         )
@@ -59,7 +59,7 @@ class Game(View):
     game_template = "game.html"
     score_template = "score.html"
 
-    def get(self, request, *args, **kwargs):
+    def get(self, request: HttpRequest, **kwargs) -> HttpResponse:
         session_id = kwargs.get("session_id")
         session = Session.objects.filter(session_id=session_id)[0]
         questions = Question.objects.filter(session_id=session_id)
@@ -69,7 +69,7 @@ class Game(View):
             {"question": questions[session.curr_position]},
         )
 
-    def post(self, request, *args, **kwargs):
+    def post(self, request: HttpRequest, **kwargs) -> HttpResponse:
         session_id = kwargs.get("session_id")
         session = Session.objects.filter(session_id=session_id)[0]
         if (
@@ -115,7 +115,7 @@ class Game(View):
             )
 
 
-def generate_questions(cd, session):
+def generate_questions(cd, session) -> None:
     counter = 0
     exclude_kwargs = get_excluded_groups(cd)
     region_kwargs = get_excluded_regions(cd)
@@ -163,7 +163,7 @@ def generate_questions(cd, session):
             counter += 1
 
 
-def create_session(request, cd):
+def create_session(request: HttpRequest, cd):
     session = Session.objects.create(
         include_trees=cd["include_trees"],
         include_shrubs=cd["include_shrubs"],
@@ -231,7 +231,7 @@ def get_extra_options_names(plants):
 
 
 @api_view(["GET"])
-def questions(request):
+def questions(request: HttpRequest):
     if request.method == "GET":
         questions = Question.objects.all()
         serializer = QuestionSerializer(questions, many=True)
@@ -239,7 +239,7 @@ def questions(request):
 
 
 @api_view(["GET"])
-def question(request, pk):
+def question(request: HttpRequest, pk):
     try:
         question = Question.objects.get(pk=pk)
     except Question.DoesNotExist:
@@ -251,7 +251,7 @@ def question(request, pk):
 
 
 @api_view(["GET"])
-def scores(request):
+def scores(request: HttpRequest):
     if request.method == "GET":
         scores = Score.objects.all()
         serializer = ScoreSerializer(scores, many=True)
@@ -259,7 +259,7 @@ def scores(request):
 
 
 @api_view(["GET", "POST"])
-def sessions(request):
+def sessions(request: HttpRequest):
     if request.method == "GET":
         sessions = Session.objects.all()
         serializer = SessionSerializer(sessions, many=True)
@@ -292,7 +292,7 @@ def sessions(request):
 
 
 @api_view(["GET"])
-def session(request, session_id):
+def session(request: HttpRequest, session_id):
     try:
         session = Session.objects.get(session_id=session_id)
     except Session.DoesNotExist:
