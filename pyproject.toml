@@ -18,14 +18,8 @@ python-dotenv = "0.19.1"
 PyYAML = "6.0"
 
 [tool.poetry.dev-dependencies]
-mypy = "0.961"
 django-stubs = "1.12.0"
-
-[tool.mypy]
-plugins = [
-    "mypy_django_plugin.main",
-    "mypy_drf_plugin.main"
-]
+djangorestframework-stubs = "1.7.0"
 
 [tool.django-stubs]
 django_settings_module = "rmf.settings"

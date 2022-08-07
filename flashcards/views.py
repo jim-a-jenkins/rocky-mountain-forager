@@ -1,4 +1,4 @@
-from django.db.models import Q
+from django.db.models import Q, QuerySet
 from django.shortcuts import render
 from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 from django.views import View
@@ -11,6 +11,7 @@ from flashcards.serializers import QuestionSerializer
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from typing import Dict, Union
 
 import random
 
@@ -115,7 +116,7 @@ class Game(View):
             )
 
 
-def generate_questions(cd, session) -> None:
+def generate_questions(cd: Dict[str, Union[bool, int]], session: Session) -> None:
     counter = 0
     exclude_kwargs = get_excluded_groups(cd)
     region_kwargs = get_excluded_regions(cd)
@@ -141,7 +142,7 @@ def generate_questions(cd, session) -> None:
             other_options = plant_names.copy()
             if extra_options_names:
                 other_options.append(extra_options_names)
-            for key, value in choices.items():
+            for key, _ in choices.items():
                 if choices[key] is None:
                     try_again = True
                     while try_again is True:
@@ -163,7 +164,7 @@ def generate_questions(cd, session) -> None:
             counter += 1
 
 
-def create_session(request: HttpRequest, cd):
+def create_session(request: HttpRequest, cd: Dict[str, Union[bool, int]]):
     session = Session.objects.create(
         include_trees=cd["include_trees"],
         include_shrubs=cd["include_shrubs"],
@@ -180,8 +181,8 @@ def create_session(request: HttpRequest, cd):
     return session
 
 
-def get_excluded_groups(cd):
-    exclude_kwargs = {}
+def get_excluded_groups(cd: Dict[str, Union[bool, int]]) -> Dict[str, bool]:
+    exclude_kwargs: Dict[str, bool] = {}
     if cd["include_trees"] is False:
         exclude_kwargs["trees"] = True
     if cd["include_shrubs"] is False:
@@ -195,8 +196,8 @@ def get_excluded_groups(cd):
     return exclude_kwargs
 
 
-def get_excluded_regions(cd):
-    region_kwargs = {}
+def get_excluded_regions(cd: Dict[str, Union[bool, int]]) -> Dict[str, bool]:
+    region_kwargs: Dict[str, bool] = {}
     if cd["include_colorado"]:
         region_kwargs["in_colorado"] = True
     if cd["include_idaho"]:
@@ -214,7 +215,7 @@ def get_excluded_regions(cd):
     return region_kwargs
 
 
-def get_extra_options_names(plants):
+def get_extra_options_names(plants: QuerySet[Plant]):
     """
     In the case where the filters don't return enough plants for a minimum of 4 multiple choice questions
     grab other options based on plant type of the first plant
