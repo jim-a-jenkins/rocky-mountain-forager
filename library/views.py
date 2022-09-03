@@ -7,15 +7,13 @@ from library.forms import UserRegistrationForm
 from library.models import Image, Plant
 from library.serializers import ImageSerializer, PlantSerializer
 from rest_framework import generics
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
 
 
 def library(request: HttpRequest) -> HttpResponse:
-    trees = Plant.objects.filter(trees=True, poisonous=False)
-    shrubs = Plant.objects.filter(shrubs=True, poisonous=False)
-    herbs = Plant.objects.filter(herbs=True, poisonous=False)
-    lichens = Plant.objects.filter(lichens=True, poisonous=False)
+    trees = Plant.objects.filter(group='Trees', poisonous=False)
+    shrubs = Plant.objects.filter(group='Shrubs', poisonous=False)
+    herbs = Plant.objects.filter(group='Herbs', poisonous=False)
+    lichens = Plant.objects.filter(group='Lichens', poisonous=False)
     poisonous_lookalikes = Plant.objects.filter(poisonous=True)
     return render(
         request,
@@ -66,22 +64,19 @@ class ImageRetrieveAPIView(generics.RetrieveAPIView):
     queryset = Image.objects.all()
     serializer_class = ImageSerializer
 
+class PlantsListAPIView(generics.ListAPIView):
+    serializer_class = PlantSerializer
+    
+    def get_queryset(self):
+        queryset = Plant.objects.all()
+        group = self.request.query_params.get('group')
+        poisonous = self.request.query_params.get('poisonous')
+        if group is not None:
+            queryset = queryset.filter(group=group)
+        if poisonous is not None:
+            queryset = queryset.filter(poisonous=poisonous)
+        return queryset
 
-@api_view(["GET"])
-def plants(request: HttpRequest):
-    if request.method == "GET":
-        plants = Plant.objects.all()
-        serializer = PlantSerializer(plants, many=True)
-        return Response(serializer.data)
-
-
-@api_view(["GET"])
-def plant(request: HttpRequest, pk):
-    try:
-        plant = Plant.objects.get(pk=pk)
-    except Plant.DoesNotExist:
-        return HttpResponse(status=404)
-
-    if request.method == "GET":
-        serializer = PlantSerializer(plant)
-        return Response(serializer.data)
+class PlantRetrieveAPIView(generics.RetrieveAPIView):
+    queryset = Plant.objects.all()
+    serializer_class = PlantSerializer

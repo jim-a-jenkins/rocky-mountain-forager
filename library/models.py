@@ -6,16 +6,12 @@ class Plant(models.Model):
     slug = models.SlugField(max_length=100)
     latin_name = models.CharField(max_length=100)
     family = models.CharField(max_length=100)
+    group = models.CharField(max_length=20)
     food_text = models.TextField(blank=True)
     description = models.TextField()
     medicinal_uses = models.TextField(blank=True)
     warnings = models.TextField()
     poisonous_look_alike = models.TextField(blank=True)
-    # Plant Group
-    trees = models.BooleanField(default=False)
-    shrubs = models.BooleanField(default=False)
-    lichens = models.BooleanField(default=False)
-    herbs = models.BooleanField(default=False)
     poisonous = models.BooleanField(default=False)
     # Region
     in_colorado = models.BooleanField(default=True)

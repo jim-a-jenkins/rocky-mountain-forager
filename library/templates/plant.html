@@ -22,13 +22,13 @@
         <p><b>Name:</b> {{ plant }}</p>
         <p><b>Latin Name:</b> {{ plant.latin_name }}</p>
         <p><b>Group:</b> 
-            {% if plant.trees is True %}
+            {% if plant.group == 'Trees' %}
                 Trees
-            {% elif plant.shrubs is True %}
+            {% elif plant.group == 'Shrubs' %}
                 Shrubs
-            {% elif plant.herbs is True %}
+            {% elif plant.group == 'Herbs' %}
                 Herbs
-            {% elif plant.lichens is True %}
+            {% elif plant.group == 'Lichens' %}
                 Lichens
             {% endif %}
         </p>

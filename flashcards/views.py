@@ -11,7 +11,7 @@ from flashcards.serializers import QuestionSerializer
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from typing import Dict, Union
+from typing import Dict, List, Union
 
 import random
 
@@ -118,11 +118,11 @@ class Game(View):
 
 def generate_questions(cd: Dict[str, Union[bool, int]], session: Session) -> None:
     counter = 0
-    exclude_kwargs = get_excluded_groups(cd)
+    exclude_groups = get_excluded_groups(cd)
     region_kwargs = get_excluded_regions(cd)
-    plants = Plant.objects.filter(Q(**region_kwargs, _connector=Q.OR)).exclude(
-        Q(**exclude_kwargs, _connector=Q.OR)
-    )
+    plants = Plant.objects.filter(Q(**region_kwargs, _connector=Q.OR))
+    for group in exclude_groups:
+        plants = plants.exclude(group__exact=group)
     extra_options_names = None
     if len(plants) < 4:
         extra_options_names = get_extra_options_names(plants)
@@ -141,12 +141,13 @@ def generate_questions(cd: Dict[str, Union[bool, int]], session: Session) -> Non
             choices[answer_choice] = answer
             other_options = plant_names.copy()
             if extra_options_names:
-                other_options.append(extra_options_names)
+                other_options.extend(extra_options_names)
+                other_options = [*set(other_options)] # remove duplicates
             for key, _ in choices.items():
                 if choices[key] is None:
                     try_again = True
                     while try_again is True:
-                        choice = random.choice(plant_names)
+                        choice = random.choice(other_options)
                         if choice != answer and choice in other_options:
                             choices[key] = choice
                             other_options.remove(choice)
@@ -181,19 +182,19 @@ def create_session(request: HttpRequest, cd: Dict[str, Union[bool, int]]):
     return session
 
 
-def get_excluded_groups(cd: Dict[str, Union[bool, int]]) -> Dict[str, bool]:
-    exclude_kwargs: Dict[str, bool] = {}
+def get_excluded_groups(cd: Dict[str, Union[bool, int]]) -> List[str]:
+    exclude_groups: List[str] = []
     if cd["include_trees"] is False:
-        exclude_kwargs["trees"] = True
+        exclude_groups.append('Trees')
     if cd["include_shrubs"] is False:
-        exclude_kwargs["shrubs"] = True
+        exclude_groups.append('Shrubs')
     if cd["include_herbs"] is False:
-        exclude_kwargs["herbs"] = True
+        exclude_groups.append('Herbs')
     if cd["include_lichens"] is False:
-        exclude_kwargs["lichens"] = True
+        exclude_groups.append('Lichens')
     if cd["include_poisonous"] is False:
-        exclude_kwargs["poisonous"] = True
-    return exclude_kwargs
+        exclude_groups.append('Poisonous')
+    return exclude_groups
 
 
 def get_excluded_regions(cd: Dict[str, Union[bool, int]]) -> Dict[str, bool]:
@@ -220,12 +221,14 @@ def get_extra_options_names(plants: QuerySet[Plant]):
     In the case where the filters don't return enough plants for a minimum of 4 multiple choice questions
     grab other options based on plant type of the first plant
     """
+    # TODO: fix bug where not enough options 
     first_plant = plants[0]
     extra_options = Plant.objects.filter(
-        trees=first_plant.trees,
-        shrubs=first_plant.shrubs,
-        lichens=first_plant.lichens,
-        herbs=first_plant.herbs,
+        group=first_plant.group,# not sure about this
+        # trees=first_plant.group,
+        # shrubs=first_plant.group,
+        # lichens=first_plant.group,
+        # herbs=first_plant.group,
     )
     extra_options_names = [option.name for option in extra_options]
     return extra_options_names

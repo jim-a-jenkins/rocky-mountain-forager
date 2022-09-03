@@ -24,6 +24,7 @@
     slug: douglas-fir
     latin_name: Pseudotsuga menziesii
     family: Pine
+    group: Trees
     food_text: Young needles can be used for tea. Inner bark can be eaten as emergency sustenance.
     description: |
       A coniferous evergreen tree with drooping branches that can grow up to 200ft tall. Needles are roughly 1.25 - 1.5
@@ -33,10 +34,6 @@
     warnings: |
       Large amounts of evergreen tea can be toxic. Pregnant women should not drink this tea. Drink in moderation.
     poisonous_look_alike: ''
-    trees: true
-    shrubs: false
-    lichens: false
-    herbs: false
     poisonous: false
     in_colorado: true
     in_idaho: true
@@ -52,6 +49,7 @@
     slug: pinyon-pine
     latin_name: Pinus edulis
     family: Pine
+    group: Trees
     food_text: |
       Seeds or "Pine nuts" can be harvested from the cones starting in early September. Green cones can be roasted to
       release their seeds. Evergreen tea made from pine-needles is rich in vitamin A and C.
@@ -62,10 +60,6 @@
     warnings: |
       Large amounts of evergreen tea can be toxic. Pregnant women should not drink this tea. Drink in moderation.
     poisonous_look_alike: ''
-    trees: true
-    shrubs: false
-    lichens: false
-    herbs: false
     poisonous: false
     in_colorado: true
     in_idaho: false
@@ -81,6 +75,7 @@
     slug: chokecherry
     latin_name: Prunus virginiana
     family: Rose
+    group: Shrubs
     food_text: |
       Choke cherries get their name from their sour, puckering taste when eaten raw. They can be harvested between July
       and October. Around this time, their color will change from bright red to dark red or black. 
@@ -90,10 +85,6 @@
     medicinal_uses: Dried cherry flesh may relieve stomach irritation.
     warnings: Fruit pits (as well as barrk, leaves, and twigs) are poisonous and produce cyanide when ingested.
     poisonous_look_alike: Buckthorn
-    trees: false
-    shrubs: true
-    lichens: false
-    herbs: false
     poisonous: false
     in_colorado: true
     in_idaho: true
@@ -109,6 +100,7 @@
     slug: buckthorn
     latin_name: Rhamnus cathartica
     family: Buckthorn
+    group: Shrubs
     food_text: ''
     description: |
       A deciduous shrub with grey-brown bark and black berries. It has green, oval leaves and yellowish-green,
@@ -116,10 +108,6 @@
     medicinal_uses: ''
     warnings: The seeds or berries are mildly poisonous and cause a laxative effect. 
     poisonous_look_alike: ''
-    trees: false
-    shrubs: true
-    lichens: false
-    herbs: false
     poisonous: true
     in_colorado: true
     in_idaho: true
@@ -135,6 +123,7 @@
     slug: trembling-aspen
     latin_name: Populus tremuloides
     family: Willow
+    group: Trees
     food_text: |
        Edible sap begins flowing in spring and can be eaten fresh. Catkins can be eaten raw or cooked and are high in
        vitamin C. The inner bark can be eaten fresh or cooked. 
@@ -146,10 +135,6 @@
       contains salicin and, like Aspirin, can relieve pain. 
     warnings: Due to the salicin content, people with ulcers should not consume the inner bark.
     poisonous_look_alike: ''
-    trees: true
-    shrubs: false
-    lichens: false
-    herbs: false
     poisonous: false
     in_colorado: true
     in_idaho: true
@@ -165,6 +150,7 @@
     slug: common-juniper
     latin_name: Juniperus communis
     family: Cedar
+    group: Shrubs
     food_text: |
       Often crushed, ground and used for seasoning, Juniper berries are best harvested from August through December.
     description: |
@@ -174,10 +160,6 @@
       Oil of Juniper can be used for its antiseptic properties.
     warnings: Large amounts of Juniper can cause digestive irritation. Pregnant women should not consume.
     poisonous_look_alike: Savin Juniper
-    trees: false
-    shrubs: true
-    lichens: false
-    herbs: false
     poisonous: false
     in_colorado: true
     in_idaho: true
@@ -193,6 +175,7 @@
     slug: oak
     latin_name: Quercus gambelii
     family: Oak
+    group: Trees
     food_text: |
       There are several methods of preparing acorns, but typically the outer shells are removed and the inner nut meat
       is leached in several changes of water. Repeat leaching until the water no longer turns brown. You can then roast
@@ -203,10 +186,6 @@
     medicinal_uses: Oak bark is antiseptic and chewing the bark is said to relieve toothaches
     warnings: Tannic acid from raw, unripe accorns can be toxic in large amounts
     poisonous_look_alike: ''
-    trees: true
-    shrubs: false
-    lichens: false
-    herbs: false
     poisonous: false
     in_colorado: true
     in_idaho: false
@@ -222,6 +201,7 @@
     slug: gooseberries
     latin_name: Ribes spp.
     family: Currant
+    group: Shrubs
     food_text: |
       All species of Gooseberries are edible and have a tart flavor. They can be eaten raw and are great for jellies and
       jams.
@@ -231,10 +211,6 @@
     medicinal_uses: Rich in antioxidants and high in vitamin C.
     warnings: Too many Gooseberries may cause an upset stomach
     poisonous_look_alike: ''
-    trees: false
-    shrubs: true
-    lichens: false
-    herbs: false
     poisonous: false
     in_colorado: true
     in_idaho: true
@@ -250,6 +226,7 @@
     slug: prickly-currant
     latin_name: Ribes lacustre
     family: Currant
+    group: Shrubs
     food_text: |
       As the fruit ripens around June-August, it will turn purplish-black. The berries can be eaten raw, used for
       james/jellies, or boiled to make tea.
@@ -259,10 +236,6 @@
     medicinal_uses: Rich in antioxidants and high in vitamin C.
     warnings: Too many Prickly Currants may cause an upset stomach
     poisonous_look_alike: Sticky Currant
-    trees: false
-    shrubs: true
-    lichens: false
-    herbs: false
     poisonous: false
     in_colorado: true
     in_idaho: true
@@ -278,6 +251,7 @@
     slug: wild-hyacinth
     latin_name: Triteleia grandiflora
     family: Lily
+    group: Herbs
     food_text: |
       Wild Hyacinth roots can be dug starting in spring. Corms can be eaten raw, but are best when roasted or boiled.
       Practice proper harvesting techniques by leaving twice as much as you take.
@@ -287,10 +261,6 @@
     medicinal_uses: ''
     warnings: Wild Hyacinth can be confused with Death Camas. Death Camas has white flowers.
     poisonous_look_alike: Death Camas
-    trees: false
-    shrubs: false
-    lichens: false
-    herbs: true
     poisonous: false
     in_colorado: true
     in_idaho: true
@@ -306,6 +276,7 @@
     slug: wild-onion
     latin_name: Allium cernuum
     family: Lily
+    group: Herbs
     food_text: |
       Wild onions bulbs can be eaten raw or prepared for consumption just like domestic onions. Their flowers and leaves
       are also edible and can be used as a garnish. 
@@ -319,10 +290,6 @@
       Wild onions can be confused with Death Camas. Death Camas has white flowers and does not smell like onion. Wild
       onions are toxic to cats and dogs.
     poisonous_look_alike: Death Camas
-    trees: false
-    shrubs: false
-    lichens: false
-    herbs: true
     poisonous: false
     in_colorado: true
     in_idaho: true
@@ -338,6 +305,7 @@
     slug: common-camas
     latin_name: Camassia quamash
     family: Lily
+    group: Herbs
     food_text: The oval shaped bulb is edible and should be cooked before eating to avoid indigestion. 
     description: |
       Also known as Blue camas, Common camas grows in moist meadows and plains. It has 6 pale to deep blue petals in a
@@ -347,10 +315,6 @@
       Common camas can be confused with Death Camas. Death Camas has white flowers. Large quantities of Common camas can
       result in indegstion and vomiting.
     poisonous_look_alike: Death Camas
-    trees: false
-    shrubs: false
-    lichens: false
-    herbs: true
     poisonous: false
     in_colorado: false
     in_idaho: true
@@ -366,6 +330,7 @@
     slug: bear-grass
     latin_name: Xerophyllum tenax 
     family: Lily
+    group: Herbs
     food_text: |
       The roots are edible and are best eaten after roasting. Practice proper harvesting techniques by leaving twice as
       much as you take.
@@ -373,10 +338,6 @@
     medicinal_uses: ''
     warnings: ''
     poisonous_look_alike: ''
-    trees: false
-    shrubs: false
-    lichens: false
-    herbs: true
     poisonous: false
     in_colorado: false
     in_idaho: true
@@ -392,6 +353,7 @@
     slug: iceland-moss
     latin_name: Cetraria islandica
     family: Leaf Lichens
+    group: Lichens
     food_text: Iceland Moss is rich in starches but is low in both protein and fat. They can be harvested year round.
     description: |
       An upright lichen that grows in groups spanning approximately 2-8" and grows upright between 1-2". It is often
@@ -401,10 +363,6 @@
       antibiotic properties.
     warnings: Leach in several changes of water before eating to avoid an upset stomach caused by strong acids.
     poisonous_look_alike: ''
-    trees: false
-    shrubs: false
-    lichens: true
-    herbs: false
     poisonous: false
     in_colorado: true
     in_idaho: false
@@ -420,6 +378,7 @@
     slug: reindeer-moss
     latin_name: Cladonia rangiferina
     family: Reindeer Lichens
+    group: Lichens
     food_text: |
       Besides being eaten plain (after leaching), Reindeer Moss can also be dried and ground into flour to be used in
       breads and soups. 
@@ -427,10 +386,6 @@
     medicinal_uses: Reindeer Moss can be boiled to make medicinal teas for treating fever and diarrhea.
     warnings: Leach in several changes of water before eating to avoid an upset stomach caused by strong acids.
     poisonous_look_alike: ''
-    trees: false
-    shrubs: false
-    lichens: true
-    herbs: false
     poisonous: false
     in_colorado: true
     in_idaho: true
@@ -446,6 +401,7 @@
     slug: old-mans-beard
     latin_name: Usnea spp.
     family: Hair Lichens
+    group: Lichens
     food_text: Best used as emergency food, the entire lichen can be eaten after leaching.
     description: |
       A beard-like hanging lichen that grows from the bark of trees and has a distinct central cord. It is yellow-green
@@ -455,10 +411,6 @@
       irritations, sore throats and coughs. It can be applied as an emergency dressing to open wounds.
     warnings: Usnea has been linked to liver damage when consumed in large quantities.
     poisonous_look_alike: ''
-    trees: false
-    shrubs: false
-    lichens: true
-    herbs: false
     poisonous: false
     in_colorado: true
     in_idaho: true
@@ -474,16 +426,13 @@
     slug: oak-moss
     latin_name: Evernia prunastri
     family: Hair Lichens
+    group: Lichens
     food_text: Best used as emergency food, the entire lichen can be eaten after leaching.
     description: |
       A hanging lichen with a coral-like structure, it is green-grey in color and commonly grows and hardwood trees.
     medicinal_uses: Its oil has antiseptic properties
     warnings:  Oak Moss contains the toxin thujone. Do not consume in large quantities.
     poisonous_look_alike: ''
-    trees: false
-    shrubs: false
-    lichens: true
-    herbs: false
     poisonous: false
     in_colorado: true
     in_idaho: true
@@ -499,16 +448,13 @@
     slug: savin-juniper
     latin_name: Juniperus sabina
     family: ''
+    group: Shrubs
     food_text: ''
     description: |
       Typically planted as an ornamental species of Juniper, Savin Juniper branches have an ascending growth pattern.
     medicinal_uses: ''
     warnings: All parts of the plant are poisonous.
     poisonous_look_alike: ''
-    trees: false
-    shrubs: true
-    lichens: false
-    herbs: false
     poisonous: true
     in_colorado: false
     in_idaho: false
@@ -524,15 +470,12 @@
     slug: sticky-currant
     latin_name: Ribes viscosissimum
     family: ''
+    group: Shrubs
     food_text: ''
     description: As its name suggests, sticky currant is covered in sticky hairs but lacks spines or bristles.
     medicinal_uses: ''
     warnings: This plant has been known to cause vomiting.
     poisonous_look_alike: ''
-    trees: false
-    shrubs: true
-    lichens: false
-    herbs: false
     poisonous: true
     in_colorado: true
     in_idaho: true
@@ -548,6 +491,7 @@
     slug: death-camas
     latin_name: Toxicoscordion venenosum
     family: ''
+    group: Herbs
     food_text: ''
     description: |
       Death Camas has long, grass-like leaves and oval bulbs that look like onion but do not smell like onion. Flowers
@@ -555,10 +499,6 @@
     medicinal_uses: ''
     warnings: All parts of this plant are poisonous.
     poisonous_look_alike: ''
-    trees: false
-    shrubs: false
-    lichens: false
-    herbs: true
     poisonous: true
     in_colorado: true
     in_idaho: true

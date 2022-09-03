@@ -6,8 +6,8 @@ from library.views import register
 from library.views import plant_detail
 from library.views import ImagesListAPIView
 from library.views import ImageRetrieveAPIView
-from library.views import plants
-from library.views import plant
+from library.views import PlantsListAPIView
+from library.views import PlantRetrieveAPIView
 
 app_name = "library"
 
@@ -57,6 +57,6 @@ urlpatterns = [
     # api
     path("api/v1/images/", ImagesListAPIView.as_view(), name="images"),
     path("api/v1/images/<int:pk>", ImageRetrieveAPIView.as_view(), name="image"),
-    path("api/v1/plants/", plants, name="plants"),
-    path("api/v1/plants/<int:pk>", plant, name="plant"),
+    path("api/v1/plants/", PlantsListAPIView.as_view(), name="plants"),
+    path("api/v1/plants/<int:pk>", PlantRetrieveAPIView.as_view(), name="plant"),
 ]
