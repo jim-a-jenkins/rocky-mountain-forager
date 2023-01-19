@@ -8,9 +8,7 @@ from library.models import Plant, Image
 from flashcards.serializers import ScoreSerializer
 from flashcards.serializers import SessionSerializer
 from flashcards.serializers import QuestionSerializer
-from rest_framework import status
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
+from rest_framework import generics, permissions
 from typing import Dict, List, Union
 
 import random
@@ -233,75 +231,36 @@ def get_extra_options_names(plants: QuerySet[Plant]):
     extra_options_names = [option.name for option in extra_options]
     return extra_options_names
 
-
-@api_view(["GET"])
-def questions(request: HttpRequest):
-    if request.method == "GET":
-        questions = Question.objects.all()
-        serializer = QuestionSerializer(questions, many=True)
-        return Response(serializer.data)
+class QuestionsListAPIView(generics.ListAPIView):
+    queryset = Question.objects.all()
+    serializer_class = QuestionSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
 
-@api_view(["GET"])
-def question(request: HttpRequest, pk):
-    try:
-        question = Question.objects.get(pk=pk)
-    except Question.DoesNotExist:
-        return HttpResponse(status=404)
-
-    if request.method == "GET":
-        serializer = QuestionSerializer(question)
-        return Response(serializer.data)
+class QuestionRetrieveAPIView(generics.RetrieveAPIView):
+    queryset = Question.objects.all()
+    serializer_class = QuestionSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
 
-@api_view(["GET"])
-def scores(request: HttpRequest):
-    if request.method == "GET":
-        scores = Score.objects.all()
-        serializer = ScoreSerializer(scores, many=True)
-        return Response(serializer.data)
+class ScoresListAPIView(generics.ListAPIView):
+    queryset = Score.objects.all()
+    serializer_class = ScoreSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
 
-@api_view(["GET", "POST"])
-def sessions(request: HttpRequest):
-    if request.method == "GET":
-        sessions = Session.objects.all()
-        serializer = SessionSerializer(sessions, many=True)
-        return Response(serializer.data)
-    elif request.method == "POST":
-        data = {
-            "session_id": request.data.get("session_id"),
-            "session_user": request.data.get("session_user"),
-            "include_trees": request.data.get("include_trees"),
-            "include_shrubs": request.data.get("include_shrubs"),
-            "include_herbs": request.data.get("include_herbs"),
-            "include_lichens": request.data.get("include_lichens"),
-            "include_poisonous": request.data.get("include_poisonous"),
-            "include_colorado": request.data.get("include_colorado"),
-            "include_idaho": request.data.get("include_idaho"),
-            "include_montana": request.data.get("include_montana"),
-            "include_new_mexico": request.data.get("include_new_mexico"),
-            "include_utah": request.data.get("include_utah"),
-            "include_washington": request.data.get("include_washington"),
-            "include_wyoming": request.data.get("include_wyoming"),
-            "total_questions": request.data.get("total_questions"),
-            "num_correct": request.data.get("num_correct"),
-            "curr_position": request.data.get("curr_position"),
-        }
-        serializer = SessionSerializer(data=data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+class SessionsListCreateAPIView(generics.ListCreateAPIView):
+    serializer_class = SessionSerializer
+    permission_classes = [permissions.IsAuthenticated]
+    
+    def get_queryset(self):
+        user = self.request.user
+        return Session.objects.filter(session_user=user)
 
-
-@api_view(["GET"])
-def session(request: HttpRequest, session_id):
-    try:
-        session = Session.objects.get(session_id=session_id)
-    except Session.DoesNotExist:
-        return HttpResponse(status=404)
-
-    if request.method == "GET":
-        serializer = SessionSerializer(session)
-        return Response(serializer.data)
+class SessionRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = SessionSerializer
+    permission_classes = [permissions.IsAuthenticated]
+    
+    def get_queryset(self):
+        user = self.request.user
+        return Session.objects.filter(session_user=user)
