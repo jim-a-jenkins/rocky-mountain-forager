@@ -1,12 +1,18 @@
+from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from django.http import HttpRequest, HttpResponse
+from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.shortcuts import render, get_object_or_404
 from flashcards.models import Score
 from library.forms import UserRegistrationForm
 from library.models import Image, Plant
 from library.serializers import ImageSerializer, PlantSerializer
 from rest_framework import generics
+
+from django.db import IntegrityError
+from rest_framework.parsers import JSONParser
+from rest_framework.authtoken.models import Token
+from django.views.decorators.csrf import csrf_exempt
 
 
 def library(request: HttpRequest) -> HttpResponse:
@@ -54,6 +60,46 @@ def register(request: HttpRequest) -> HttpResponse:
 
 
 #  API
+
+@csrf_exempt
+def signup(request):
+    if request.method == "POST":
+        try:
+            data = JSONParser().parse(request)
+            user = User.objects.create_user(
+                username=data['username'],
+                password=data['password']
+            )
+            user.save()
+            
+            token = Token.objects.create(user=user)
+            return JsonResponse({'token':str(token)}, status=201)
+        except IntegrityError:
+            return JsonResponse(
+                {'error': 'The requested username has already been taken. '
+                 'Please choose another username.'}, status=400
+            )
+
+@csrf_exempt
+def login(request):
+    if request.method == "POST":
+        data = JSONParser().parse(request)
+        user = authenticate(
+            request,
+            username=data["username"],
+            password=data["password"]
+        )
+        if user is None:
+            return JsonResponse(
+                {"error": "Invalid credentials. Please check your "
+                 "username and password."}, status=400
+            )
+        else:
+            try:
+                token = Token.objects.get(user=user)
+            except:
+                token = Token.objects.create(user=user)
+            return JsonResponse({'token':str(token)}, status=201)
 
 class ImagesListAPIView(generics.ListAPIView):
     queryset = Image.objects.all()

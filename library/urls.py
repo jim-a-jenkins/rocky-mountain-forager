@@ -4,6 +4,8 @@ from library.views import account
 from library.views import library
 from library.views import register
 from library.views import plant_detail
+from library.views import signup
+from library.views import login
 from library.views import ImagesListAPIView
 from library.views import ImageRetrieveAPIView
 from library.views import PlantsListAPIView
@@ -55,6 +57,8 @@ urlpatterns = [
     path("register/", register, name="register"),
     path("library/<slug:plant>/", plant_detail, name="plant_detail"),
     # api
+    path("api/v1/login/", login),
+    path("api/v1/signup/", signup),
     path("api/v1/images/", ImagesListAPIView.as_view(), name="images"),
     path("api/v1/images/<int:pk>", ImageRetrieveAPIView.as_view(), name="image"),
     path("api/v1/plants/", PlantsListAPIView.as_view(), name="plants"),
