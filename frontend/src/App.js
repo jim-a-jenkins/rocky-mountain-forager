@@ -1,112 +1,43 @@
-import React, { Component } from "react";
+import React from "react";
 import './App.css';
-import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
-import NavigationBar from "./navigation/Navbar";
+import Library from "./components/library";
+import Flashcards from "./components/flashcards";
+import Login from "./components/login";
+import Account from "./components/account";
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import './scss/custom.scss';
+import { Routes, Route, Link } from 'react-router-dom';
 
-
-class App extends Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      treesList: [],
-      shrubsList: [],
-      herbsList: [],
-      lichensList: [],
-      poisonousList: [],
-    };
-  }
-
-  componentDidMount() {
-    this.fetchPlants();
-  }
-
-  fetchPlants = () => {
-    axios
-      .get("/api/v1/plants?group=Trees")
-      .then((res) => this.setState({ treesList: res.data }))
-      .catch((err) => console.log(err));
-    axios
-      .get("/api/v1/plants?group=Shrubs")
-      .then((res) => this.setState({ shrubsList: res.data }))
-      .catch((err) => console.log(err));
-    axios
-      .get("/api/v1/plants?group=Herbs")
-      .then((res) => this.setState({ herbsList: res.data }))
-      .catch((err) => console.log(err));
-    axios
-      .get("/api/v1/plants?group=Lichens")
-      .then((res) => this.setState({ lichensList: res.data }))
-      .catch((err) => console.log(err));
-    axios
-      .get("/api/v1/plants?poisonous=True")
-      .then((res) => this.setState({ poisonousList: res.data }))
-      .catch((err) => console.log(err));
-  };
+function App() {
   
-  render() {
-    return (
-      <div className='App'>
-        <div>
-          <NavigationBar />
-        </div>
-        <div>
-          <header className='App-header'>
-            <h1>Table of Contents</h1>
-            <h2>Trees</h2>
-            <List
-                list={this.state.treesList}
-            />
-            <h2>Shrubs</h2>
-            <List
-                list={this.state.shrubsList}
-            />
-            <h2>Herbs</h2>
-            <List
-                list={this.state.herbsList}
-            />
-            <h2>Lichens</h2>
-            <List
-                list={this.state.lichensList}
-            />
-            <h2>Poisonous Look-Alikes</h2>
-            <List
-                list={this.state.poisonousList}
-            />
-          </header>
-        </div>
+  return (
+    <div className='App'>
+      <div>
+        <Navbar bg="primary" variant="dark">
+          <Navbar.Brand href="#home">Rocky Mountain Forager</Navbar.Brand>
+          <Nav className="me-auto">
+              <Link className="nav-link" to={"/library"}>Library</Link>
+              <Link className="nav-link" to={"/flashcards"}>Flashcards</Link>
+              <Link className="nav-link" to={"/account"}>Account</Link>
+              <Link className="nav-link" to={"/logout"}>Logout</Link>
+          </Nav>
+        </Navbar>
       </div>
-    );
-  }
+
+      <div className="container mt-4">
+        <Routes>
+          <Route path="/library" element={<Library/>} />
+          <Route path="/flashcards" element={<Flashcards/>} />
+          <Route path="/account" element={<Account/>} />
+          <Route path="/logout" element={<Login/>} />
+        </Routes>
+      </div>
+    </div>
+  );
 }
 
-const List = ({ list }) => (
-  <ul>
-      {list.map((item) => (
-          <Item
-              key={item.objectID}
-              item={item}
-          />
-      ))}
-  </ul>
-);
 
-const Item = ({item}) => (
-  <li className='item'>
-    <span style={{ width: '30%' }}>{item.name}</span>
-  </li>
-);
-
-// Components
-// 1. Navbar (navbar + sidebar for library)
-// 2. Table of contents
-// 3. Plant
-// 4. Game Setup
-// 5. Flashcard (single card) 
-// 6. Account Details
-// 7. Create Account
-// 8. Forgot password
-// 9. Cookies warning modal
 
 export default App;
