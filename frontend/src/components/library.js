@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from 'react';
-import LibraryDataService from '../services/library-service'; //TODO
+import Button from 'react-bootstrap/Button';
+import Offcanvas from 'react-bootstrap/Offcanvas';
+import LibraryDataService from '../services/library-service';
 
 const Library = props => {
     const[trees, setTrees] = useState([]);
@@ -7,6 +9,11 @@ const Library = props => {
     const[shrubs, setShrubs] = useState([]);
     const[lichens, setLichens] = useState([]);
     const[poisonous, setPoisonous] = useState([]);
+
+    // Offcanvas
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     useEffect(() =>{
         retrievePlants();
@@ -74,27 +81,37 @@ const Library = props => {
 
     return(
         <header className='App-header'>
-            <h1>Table of Contents</h1>
-            <h2>Trees</h2>
-            <List
-                list={trees}
-            />
-            <h2>Shrubs</h2>
-            <List
-                list={shrubs}
-            />
-            <h2>Herbs</h2>
-            <List
-                list={herbs}
-            />
-            <h2>Lichens</h2>
-            <List
-                list={lichens}
-            />
-            <h2>Poisonous Look-Alikes</h2>
-            <List
-                list={poisonous}
-            />
+            <Button variant="primary" onClick={handleShow}>
+                Show Library
+            </Button>
+            <Offcanvas show={show} onHide={handleClose} backdrop={false} scroll={true}>
+                <Offcanvas.Header closeButton>
+                <Offcanvas.Title><h2>Library of Plants</h2></Offcanvas.Title>
+                </Offcanvas.Header>
+                <Offcanvas.Body>
+                    <h2>Table of Contents</h2>
+                    <h4>Trees</h4>
+                    <List
+                        list={trees}
+                    />
+                    <h2>Shrubs</h2>
+                    <List
+                        list={shrubs}
+                    />
+                    <h2>Herbs</h2>
+                    <List
+                        list={herbs}
+                    />
+                    <h2>Lichens</h2>
+                    <List
+                        list={lichens}
+                    />
+                    <h2>Poisonous Look-Alikes</h2>
+                    <List
+                        list={poisonous}
+                    />
+                </Offcanvas.Body>
+            </Offcanvas>
           </header>
     );
 }

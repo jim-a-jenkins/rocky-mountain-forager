@@ -26,7 +26,7 @@ function App() {
         </Navbar>
       </div>
 
-      <div className="container mt-4">
+      <div>
         <Routes>
           <Route path="/library" element={<Library/>} />
           <Route path="/flashcards" element={<Flashcards/>} />
